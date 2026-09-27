@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AssetBridge.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+529cb27d26c6fbf9b3f5c2258c2836e3ffe12787")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39f96a494081428ac13e2b19e450f86043807aa0")]
 [assembly: System.Reflection.AssemblyProductAttribute("AssetBridge.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AssetBridge.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
