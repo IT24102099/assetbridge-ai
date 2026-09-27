@@ -17,36 +17,83 @@ import {
   Users,
   MessagesSquare,
   ShieldCheck,
-  AudioWaveform,
   Command,
   GalleryVerticalEnd,
+  FileCheck2,
+  Receipt,
+  Scale,
+  Sparkles,
+  Clock,
+  TrendingUp,
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
   user: {
-    name: 'satnaing',
-    email: 'satnaingdev@gmail.com',
+    name: 'Nimal Perera',
+    email: 'nimal.rep@assetbridge.ai',
     avatar: '/avatars/shadcn.jpg',
   },
   teams: [
     {
-      name: 'Shadcn Admin',
+      name: 'AssetBridge AI',
       logo: Command,
-      plan: 'Vite + ShadcnUI',
+      plan: 'Remote Asset Platform',
     },
     {
-      name: 'Acme Inc',
+      name: 'Overseas Owner Portal',
       logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
-    },
-    {
-      name: 'Acme Corp.',
-      logo: AudioWaveform,
-      plan: 'Startup',
+      plan: 'Enterprise Continuity',
     },
   ],
   navGroups: [
+    {
+      title: 'Member 3: Maintenance & Quotations',
+      items: [
+        {
+          title: 'Maintenance Overview',
+          url: '/maintenance',
+          icon: Wrench,
+        },
+        {
+          title: 'Damage Inspections',
+          url: '/inspections',
+          icon: FileCheck2,
+          badge: 'INS-1021',
+        },
+        {
+          title: 'Quotations',
+          url: '/quotations',
+          icon: Receipt,
+        },
+        {
+          title: 'Compare Quotations (AI)',
+          url: '/quotations/compare',
+          icon: Scale,
+          badge: 'AI Rec',
+        },
+        {
+          title: 'Maintenance Jobs',
+          url: '/maintenance/jobs',
+          icon: Clock,
+        },
+        {
+          title: 'Price Book Catalog',
+          url: '/maintenance/catalog',
+          icon: Package,
+        },
+        {
+          title: 'Reports & Analytics',
+          url: '/maintenance/reports',
+          icon: TrendingUp,
+        },
+        {
+          title: 'Agent 3 & RAG Studio',
+          url: '/maintenance/ai-agent',
+          icon: Sparkles,
+        },
+      ],
+    },
     {
       title: 'General',
       items: [
