@@ -20,9 +20,11 @@ import { Route as errors404RouteImport } from './routes/(errors)/404'
 import { Route as errors500RouteImport } from './routes/(errors)/500'
 import { Route as errors503RouteImport } from './routes/(errors)/503'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
-import { Route as AuthenticatedProviderCoordinationRouteRouteImport } from './routes/_authenticated/provider-coordination/route'
+import { Route as AuthenticatedAuditLogsRouteImport } from './routes/_authenticated/audit-logs'
+import { Route as AuthenticatedFollowUpsRouteImport } from './routes/_authenticated/follow-ups'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
-import { Route as AuthenticatedAssetsIndexRouteImport } from './routes/_authenticated/assets/index'
+import { Route as AuthenticatedApprovalsIndexRouteImport } from './routes/_authenticated/approvals/index'
+import { Route as AuthenticatedApprovalsApprovalIdRouteImport } from './routes/_authenticated/approvals/$approvalId'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 
 import { Route as AuthenticatedProviderCoordinationIndexRouteImport } from './routes/_authenticated/provider-coordination/index'
@@ -95,22 +97,32 @@ const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedProviderCoordinationRouteRoute =
-  AuthenticatedProviderCoordinationRouteRouteImport.update({
-    id: '/provider-coordination',
-    path: '/provider-coordination',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
+const AuthenticatedAuditLogsRoute = AuthenticatedAuditLogsRouteImport.update({
+  id: '/audit-logs',
+  path: '/audit-logs',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFollowUpsRoute = AuthenticatedFollowUpsRouteImport.update({
+  id: '/follow-ups',
+  path: '/follow-ups',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedSettingsRouteRoute =
   AuthenticatedSettingsRouteRouteImport.update({
     id: '/settings',
     path: '/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedAssetsIndexRoute =
-  AuthenticatedAssetsIndexRouteImport.update({
-    id: '/assets/',
-    path: '/assets/',
+const AuthenticatedApprovalsIndexRoute =
+  AuthenticatedApprovalsIndexRouteImport.update({
+    id: '/approvals/',
+    path: '/approvals/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedApprovalsApprovalIdRoute =
+  AuthenticatedApprovalsApprovalIdRouteImport.update({
+    id: '/approvals/$approvalId',
+    path: '/approvals/$approvalId',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedErrorsErrorRoute =
@@ -215,6 +227,9 @@ export interface FileRoutesByFullPath {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
+  '/audit-logs': typeof AuthenticatedAuditLogsRoute
+  '/follow-ups': typeof AuthenticatedFollowUpsRoute
+  '/approvals/$approvalId': typeof AuthenticatedApprovalsApprovalIdRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/provider-coordination/calendar': typeof AuthenticatedProviderCoordinationCalendarRoute
   '/provider-coordination/matching': typeof AuthenticatedProviderCoordinationMatchingRoute
@@ -222,6 +237,7 @@ export interface FileRoutesByFullPath {
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+  '/approvals/': typeof AuthenticatedApprovalsIndexRoute
 
   '/provider-coordination/': typeof AuthenticatedProviderCoordinationIndexRoute
 
@@ -244,7 +260,10 @@ export interface FileRoutesByTo {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
+  '/audit-logs': typeof AuthenticatedAuditLogsRoute
+  '/follow-ups': typeof AuthenticatedFollowUpsRoute
   '/': typeof AuthenticatedIndexRoute
+  '/approvals/$approvalId': typeof AuthenticatedApprovalsApprovalIdRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/provider-coordination/calendar': typeof AuthenticatedProviderCoordinationCalendarRoute
   '/provider-coordination/matching': typeof AuthenticatedProviderCoordinationMatchingRoute
@@ -252,6 +271,7 @@ export interface FileRoutesByTo {
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+  '/approvals': typeof AuthenticatedApprovalsIndexRoute
 
   '/provider-coordination': typeof AuthenticatedProviderCoordinationIndexRoute
 
@@ -278,7 +298,10 @@ export interface FileRoutesById {
   '/(errors)/404': typeof errors404Route
   '/(errors)/500': typeof errors500Route
   '/(errors)/503': typeof errors503Route
+  '/_authenticated/audit-logs': typeof AuthenticatedAuditLogsRoute
+  '/_authenticated/follow-ups': typeof AuthenticatedFollowUpsRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/approvals/$approvalId': typeof AuthenticatedApprovalsApprovalIdRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/_authenticated/provider-coordination/calendar': typeof AuthenticatedProviderCoordinationCalendarRoute
   '/_authenticated/provider-coordination/matching': typeof AuthenticatedProviderCoordinationMatchingRoute
@@ -286,12 +309,7 @@ export interface FileRoutesById {
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/_authenticated/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
-
-  '/_authenticated/provider-coordination/': typeof AuthenticatedProviderCoordinationIndexRoute
-
-  '/_authenticated/assets/': typeof AuthenticatedAssetsIndexRoute
-  '/_authenticated/incidents/': typeof AuthenticatedIncidentsIndexRoute
-
+  '/_authenticated/approvals/': typeof AuthenticatedApprovalsIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/provider-coordination/providers/$providerId': typeof AuthenticatedProviderCoordinationProvidersProviderIdRoute
   '/_authenticated/provider-coordination/representatives/$representativeId': typeof AuthenticatedProviderCoordinationRepresentativesRepresentativeIdRoute
@@ -313,6 +331,9 @@ export interface FileRouteTypes {
     | '/404'
     | '/500'
     | '/503'
+    | '/audit-logs'
+    | '/follow-ups'
+    | '/approvals/$approvalId'
     | '/errors/$error'
     | '/provider-coordination/calendar'
     | '/provider-coordination/matching'
@@ -320,12 +341,7 @@ export interface FileRouteTypes {
     | '/settings/appearance'
     | '/settings/display'
     | '/settings/notifications'
-
-    | '/provider-coordination/'
-
-    | '/assets/'
-    | '/incidents/'
-
+    | '/approvals/'
     | '/settings/'
     | '/provider-coordination/providers/$providerId'
     | '/provider-coordination/representatives/$representativeId'
@@ -342,7 +358,10 @@ export interface FileRouteTypes {
     | '/404'
     | '/500'
     | '/503'
+    | '/audit-logs'
+    | '/follow-ups'
     | '/'
+    | '/approvals/$approvalId'
     | '/errors/$error'
     | '/provider-coordination/calendar'
     | '/provider-coordination/matching'
@@ -350,11 +369,7 @@ export interface FileRouteTypes {
     | '/settings/appearance'
     | '/settings/display'
     | '/settings/notifications'
-
-    | '/provider-coordination'
-    | '/assets'
-    | '/incidents'
-
+    | '/approvals'
     | '/settings'
     | '/provider-coordination/providers/$providerId'
     | '/provider-coordination/representatives/$representativeId'
@@ -374,7 +389,10 @@ export interface FileRouteTypes {
     | '/(errors)/404'
     | '/(errors)/500'
     | '/(errors)/503'
+    | '/_authenticated/audit-logs'
+    | '/_authenticated/follow-ups'
     | '/_authenticated/'
+    | '/_authenticated/approvals/$approvalId'
     | '/_authenticated/errors/$error'
     | '/_authenticated/provider-coordination/calendar'
     | '/_authenticated/provider-coordination/matching'
@@ -382,12 +400,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/appearance'
     | '/_authenticated/settings/display'
     | '/_authenticated/settings/notifications'
-
-    | '/_authenticated/provider-coordination/'
-
-    | '/_authenticated/assets/'
-    | '/_authenticated/incidents/'
-
+    | '/_authenticated/approvals/'
     | '/_authenticated/settings/'
     | '/_authenticated/provider-coordination/providers/$providerId'
     | '/_authenticated/provider-coordination/representatives/$representativeId'
@@ -487,11 +500,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/provider-coordination': {
-      id: '/_authenticated/provider-coordination'
-      path: '/provider-coordination'
-      fullPath: '/provider-coordination'
-      preLoaderRoute: typeof AuthenticatedProviderCoordinationRouteRouteImport
+    '/_authenticated/audit-logs': {
+      id: '/_authenticated/audit-logs'
+      path: '/audit-logs'
+      fullPath: '/audit-logs'
+      preLoaderRoute: typeof AuthenticatedAuditLogsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/follow-ups': {
+      id: '/_authenticated/follow-ups'
+      path: '/follow-ups'
+      fullPath: '/follow-ups'
+      preLoaderRoute: typeof AuthenticatedFollowUpsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/settings': {
@@ -501,11 +521,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/assets/': {
-      id: '/_authenticated/assets/'
-      path: '/assets'
-      fullPath: '/assets/'
-      preLoaderRoute: typeof AuthenticatedAssetsIndexRouteImport
+    '/_authenticated/approvals/': {
+      id: '/_authenticated/approvals/'
+      path: '/approvals'
+      fullPath: '/approvals/'
+      preLoaderRoute: typeof AuthenticatedApprovalsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/approvals/$approvalId': {
+      id: '/_authenticated/approvals/$approvalId'
+      path: '/approvals/$approvalId'
+      fullPath: '/approvals/$approvalId'
+      preLoaderRoute: typeof AuthenticatedApprovalsApprovalIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/errors/$error': {
@@ -670,20 +697,24 @@ const AuthenticatedSettingsRouteRouteWithChildren =
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedProviderCoordinationRouteRoute: typeof AuthenticatedProviderCoordinationRouteRouteWithChildren
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
+  AuthenticatedAuditLogsRoute: typeof AuthenticatedAuditLogsRoute
+  AuthenticatedFollowUpsRoute: typeof AuthenticatedFollowUpsRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedApprovalsApprovalIdRoute: typeof AuthenticatedApprovalsApprovalIdRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
-  AuthenticatedAssetsIndexRoute: typeof AuthenticatedAssetsIndexRoute
-  AuthenticatedIncidentsIndexRoute: typeof AuthenticatedIncidentsIndexRoute
+  AuthenticatedApprovalsIndexRoute: typeof AuthenticatedApprovalsIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedProviderCoordinationRouteRoute:
     AuthenticatedProviderCoordinationRouteRouteWithChildren,
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
+  AuthenticatedAuditLogsRoute: AuthenticatedAuditLogsRoute,
+  AuthenticatedFollowUpsRoute: AuthenticatedFollowUpsRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedApprovalsApprovalIdRoute: AuthenticatedApprovalsApprovalIdRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
-  AuthenticatedAssetsIndexRoute: AuthenticatedAssetsIndexRoute,
-  AuthenticatedIncidentsIndexRoute: AuthenticatedIncidentsIndexRoute,
+  AuthenticatedApprovalsIndexRoute: AuthenticatedApprovalsIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

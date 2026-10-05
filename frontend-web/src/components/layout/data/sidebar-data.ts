@@ -13,7 +13,9 @@ import {
   UserCog,
   UserX,
   ShieldCheck,
-
+  ClipboardCheck,
+  ScrollText,
+  ListChecks,
   AudioWaveform,
   Command,
   GalleryVerticalEnd,
@@ -88,6 +90,21 @@ export const sidebarData: SidebarData = {
           title: 'Availability Calendar',
           url: '/provider-coordination/calendar',
           icon: Calendar,
+        },
+        {
+          title: 'Approvals',
+          url: '/approvals',
+          icon: ClipboardCheck,
+        },
+        {
+          title: 'Follow-ups',
+          url: '/follow-ups',
+          icon: ListChecks,
+        },
+        {
+          title: 'Audit logs',
+          url: '/audit-logs',
+          icon: ScrollText,
         },
       ],
     },
