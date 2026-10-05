@@ -20,6 +20,10 @@ import {
   AudioWaveform,
   Command,
   GalleryVerticalEnd,
+  UserCheck,
+  Building2,
+  Sparkles,
+  Calendar,
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
@@ -31,9 +35,9 @@ export const sidebarData: SidebarData = {
   },
   teams: [
     {
-      name: 'Shadcn Admin',
+      name: 'AssetBridge AI',
       logo: Command,
-      plan: 'Vite + ShadcnUI',
+      plan: 'Enterprise Asset Platform',
     },
     {
       name: 'Acme Inc',
@@ -75,6 +79,31 @@ export const sidebarData: SidebarData = {
           title: 'Users',
           url: '/users',
           icon: Users,
+        },
+      ],
+    },
+    {
+      title: 'Provider Coordination',
+      items: [
+        {
+          title: 'Representatives',
+          url: '/provider-coordination/representatives',
+          icon: UserCheck,
+        },
+        {
+          title: 'Service Providers',
+          url: '/provider-coordination/providers',
+          icon: Building2,
+        },
+        {
+          title: 'Provider Matching',
+          url: '/provider-coordination/matching',
+          icon: Sparkles,
+        },
+        {
+          title: 'Availability Calendar',
+          url: '/provider-coordination/calendar',
+          icon: Calendar,
         },
       ],
     },
