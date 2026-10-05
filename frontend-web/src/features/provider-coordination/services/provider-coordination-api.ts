@@ -411,3 +411,48 @@ export async function deleteAvailabilitySlotApi(
     return false;
   }
 }
+
+export interface AgentRecommendationResponse {
+  request: {
+    maintenanceRequirement: string;
+    requiredSkill?: string;
+    location?: string;
+    requiredDate?: string;
+  };
+  recommendations: Array<{
+    providerId: string;
+    providerName: string;
+    matchScore: number;
+    reasons: string[];
+    availability: 'AVAILABLE' | 'BUSY' | 'UNAVAILABLE';
+    relevantExperience: string;
+    rating: number;
+    verificationStatus: string;
+    distanceKm: number;
+    warnings?: string[];
+  }>;
+  warnings: string[];
+  agentRunId: string;
+  timestamp: string;
+}
+
+export async function runProviderIntelligenceAgentApi(req: {
+  maintenanceRequirement: string;
+  requiredSkill?: string;
+  location?: string;
+  requiredDate?: string;
+}): Promise<AgentRecommendationResponse | null> {
+  try {
+    const res = await fetch(`${API_BASE}/agents/provider-intelligence/recommend`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(req),
+    });
+    if (!res.ok) return null;
+    const json = await res.json();
+    if (!json.success || !json.data) return null;
+    return json.data as AgentRecommendationResponse;
+  } catch {
+    return null;
+  }
+}

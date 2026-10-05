@@ -4,6 +4,8 @@ import representativeRoutes from './modules/representatives/routes.js';
 import providerRoutes from './modules/providers/routes.js';
 import availabilityRoutes from './modules/availability/routes.js';
 
+import agentRoutes from './modules/agents/routes.js';
+
 export const app = express();
 
 app.use(cors());
@@ -16,6 +18,7 @@ app.get('/', (_req: Request, res: Response) => {
     health: '/api/health',
     representatives: '/api/representatives',
     providers: '/api/providers',
+    agent: '/api/agents/provider-intelligence/recommend',
   });
 });
 
@@ -28,6 +31,7 @@ app.get('/api/health', (_req: Request, res: Response) => {
 app.use('/api/representatives', representativeRoutes);
 app.use('/api/providers/:id/availability', availabilityRoutes);
 app.use('/api/providers', providerRoutes);
+app.use('/api/agents', agentRoutes);
 
 // 404 Handler for API routes
 app.use('/api/*', (_req: Request, res: Response) => {

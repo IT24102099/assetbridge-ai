@@ -4,16 +4,39 @@ import { Representative } from '../modules/representatives/types.js';
 import { ServiceProvider } from '../modules/providers/types.js';
 import { ProviderAvailability } from '../modules/availability/types.js';
 
+export interface ToolExecution {
+  id: string;
+  agentRunId: string;
+  toolName: string;
+  input: Record<string, unknown>;
+  output: unknown;
+  timestamp: string;
+}
+
+export interface AgentRun {
+  id: string;
+  agentName: string;
+  requestInput: Record<string, unknown>;
+  startTime: string;
+  endTime?: string;
+  status: 'RUNNING' | 'COMPLETED' | 'FAILED';
+  outputResult?: unknown;
+  errorMessage?: string;
+  toolCalls: ToolExecution[];
+}
+
 export interface DatabaseSchema {
   representatives: Representative[];
   providers: ServiceProvider[];
   availability: ProviderAvailability[];
+  agentRuns: AgentRun[];
 }
 
 const DATA_DIR = path.resolve(process.cwd(), 'data');
 const DB_FILE = path.join(DATA_DIR, 'db.json');
 
 const INITIAL_DATA: DatabaseSchema = {
+  agentRuns: [],
   representatives: [
     {
       id: 'rep-1',
@@ -392,7 +415,11 @@ class StorageEngine {
 
     try {
       const content = fs.readFileSync(DB_FILE, 'utf-8');
-      this.inMemoryData = JSON.parse(content) as DatabaseSchema;
+      const parsed = JSON.parse(content) as DatabaseSchema;
+      if (!parsed.agentRuns) {
+        parsed.agentRuns = [];
+      }
+      this.inMemoryData = parsed;
       return this.inMemoryData;
     } catch (err) {
       console.warn('Could not parse db.json, re-initializing with seed data.', err);
