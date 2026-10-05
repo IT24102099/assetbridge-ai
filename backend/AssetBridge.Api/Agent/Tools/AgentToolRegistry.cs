@@ -48,10 +48,8 @@ public class AgentToolRegistry : IAgentToolRegistry
                 Description = "Orchestrates a comprehensive multi-step resolution plan across Member 1 (Asset/Incident), Member 2 (Provider Coordination), Member 3 (Quotation & Inspection), and Member 4 (Approval & Continuity).",
                 Parameters = new()
                 {
-                    { "incidentId", "integer (required)" },
-                    { "requiredSpecialization", "string" },
-                    { "targetDeadline", "string (ISO datetime)" },
-                    { "allocatedBudget", "number" }
+                    { "objective", "string (required) - Clear resolution objective for the defect" },
+                    { "steps", "array (required) - Multi-step execution actions across member components (retrieve asset info, identify expertise, find providers, compare quotes, validate, request approval)" }
                 }
             }
         };
@@ -215,7 +213,20 @@ public class AgentToolRegistry : IAgentToolRegistry
         return (evidences, log);
     }
 
-    public (List<ExecutionPlanStep> Steps, AgentToolCallLog Log) CreateWorkflowPlan(
+    public (List<ExecutionPlanStep> Steps, AgentToolCallLog Log) CreateWorkflowPlan(string objective, List<ExecutionPlanStep> steps)
+    {
+        var log = new AgentToolCallLog
+        {
+            ToolName = "CreateWorkflowPlan",
+            Arguments = new { objective, totalSteps = steps.Count },
+            OutputSummary = new { totalSteps = steps.Count, firstStep = steps.FirstOrDefault()?.Name, status = "WorkflowPlanConstructed" },
+            Success = true,
+            Timestamp = DateTime.UtcNow
+        };
+        return (steps, log);
+    }
+
+    public List<ExecutionPlanStep> SynthesizePlanSteps(
         Incident incident,
         Asset asset,
         List<AssetHistory> history,
@@ -226,15 +237,15 @@ public class AgentToolRegistry : IAgentToolRegistry
         var trade = ragDocs.FirstOrDefault()?.RecommendedTrade ?? "Certified Facility Repair Technician";
         var isEmergency = incident.Severity == IncidentSeverity.High || incident.Severity == IncidentSeverity.Critical;
 
-        var steps = new List<ExecutionPlanStep>
+        return new List<ExecutionPlanStep>
         {
             new ExecutionPlanStep
             {
                 StepNumber = 1,
                 Name = "Asset Diagnostics & Triage Verification",
                 AssignedComponent = "Member 1: Asset & Incident Management",
-                Action = "Verify Asset State & Incident Scope",
-                Description = $"Verify operational status of {asset.AssetCode} ({asset.Name}). Triage defect '{incident.Title}' against RAG guidance for {asset.Category}.",
+                Action = "Retrieve Asset Info & Verify Scope",
+                Description = $"Retrieve technical metadata for {asset.AssetCode} ({asset.Name}). Triage defect '{incident.Title}' against RAG guidance for {asset.Category}.",
                 ExpectedOutput = "Verified defect parameters, safety checklist, and formal incident triage classification.",
                 Status = "Completed",
                 EstimatedDuration = "15 minutes",
@@ -243,9 +254,9 @@ public class AgentToolRegistry : IAgentToolRegistry
             new ExecutionPlanStep
             {
                 StepNumber = 2,
-                Name = "Local Representative & Provider Matching",
+                Name = "Expertise Identification & Provider Matching",
                 AssignedComponent = "Member 2: Provider Representative Coordination",
-                Action = "Engage Local Rep & Search Provider Network",
+                Action = "Identify Required Expertise & Find Providers",
                 Description = $"Delegate on-site dispatch to the local representative nearest to {asset.Location}. Query the vetted provider network for '{trade}'.",
                 ExpectedOutput = $"Shortlist of 2-3 vetted {trade} contractors in {asset.Location} with verified insurance and rating > 4.5.",
                 Status = "Active",
@@ -255,7 +266,7 @@ public class AgentToolRegistry : IAgentToolRegistry
             new ExecutionPlanStep
             {
                 StepNumber = 3,
-                Name = "Inspection Scheduling & Quotation Submission",
+                Name = "On-site Inspection & Quotation Submission",
                 AssignedComponent = "Member 3: Maintenance & Quotation Management",
                 Action = "Dispatch Technician for On-site Quotation",
                 Description = $"Schedule physical on-site damage assessment. Contractors submit itemized repair quotes (labor, parts, materials) under estimated budget threshold of LKR {(budget ?? incident.Budget ?? 50000):N0}.",
@@ -269,7 +280,7 @@ public class AgentToolRegistry : IAgentToolRegistry
                 StepNumber = 4,
                 Name = "AI Quote Comparison & Cost Recommendation",
                 AssignedComponent = "Member 3: Maintenance & Cost Recommendation Agent",
-                Action = "Execute RAG Cost & Material Benchmarking",
+                Action = "Compare Quotes & Benchmark Costs",
                 Description = "Maintenance & Cost Agent evaluates contractor quotes against historical repair benchmarks and market rates in Sri Lanka.",
                 ExpectedOutput = "Recommended best-value contractor with risk score and cost variance analysis.",
                 Status = "Pending",
@@ -281,7 +292,7 @@ public class AgentToolRegistry : IAgentToolRegistry
                 StepNumber = 5,
                 Name = "Human-in-the-Loop Owner Approval Gateway",
                 AssignedComponent = "Member 4: Approval & Workflow Continuity",
-                Action = "Request Owner Authorization",
+                Action = "Request Human Owner Approval",
                 Description = "Present AI-validated repair plan and quotation to the overseas asset owner for explicit approval. AI does NOT automatically commit funds.",
                 ExpectedOutput = "Owner digital signature/approval confirmation and escrow fund allocation.",
                 Status = "Pending",
@@ -291,9 +302,9 @@ public class AgentToolRegistry : IAgentToolRegistry
             new ExecutionPlanStep
             {
                 StepNumber = 6,
-                Name = "Work Execution & Post-Repair Validation",
+                Name = "Work Execution & Evidence Validation",
                 AssignedComponent = "Member 4: Validation & Continuity Agent",
-                Action = "Oversee Repairs, Verify Quality, Close Incident",
+                Action = "Validate Repair Evidence & Close Incident",
                 Description = $"Contractor completes physical repair at {asset.Location}. Local Rep uploads after-repair photographic evidence. Validation Agent audits evidence and restores asset to Active.",
                 ExpectedOutput = "Before/after photo audit log, signed completion certificate, and asset status updated to Active.",
                 Status = "Pending",
@@ -301,15 +312,5 @@ public class AgentToolRegistry : IAgentToolRegistry
                 Dependencies = new() { 5 }
             }
         };
-
-        var log = new AgentToolCallLog
-        {
-            ToolName = "CreateWorkflowPlan",
-            Arguments = new { incidentId = incident.Id, trade, budget = budget ?? incident.Budget, deadline },
-            OutputSummary = new { TotalSteps = steps.Count, FirstStep = steps[0].Name, RecommendedTrade = trade },
-            Success = true
-        };
-
-        return (steps, log);
     }
 }

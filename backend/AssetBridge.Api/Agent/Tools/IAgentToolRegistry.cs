@@ -15,7 +15,9 @@ public interface IAgentToolRegistry
 
     Task<(List<IncidentEvidence> Evidences, AgentToolCallLog Log)> GetIncidentEvidenceAsync(int incidentId);
 
-    (List<ExecutionPlanStep> Steps, AgentToolCallLog Log) CreateWorkflowPlan(
+    (List<ExecutionPlanStep> Steps, AgentToolCallLog Log) CreateWorkflowPlan(string objective, List<ExecutionPlanStep> steps);
+
+    List<ExecutionPlanStep> SynthesizePlanSteps(
         Incident incident,
         Asset asset,
         List<AssetHistory> history,

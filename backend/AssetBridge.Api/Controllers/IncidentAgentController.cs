@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using AssetBridge.Api.Agent.Models;
 using AssetBridge.Api.Agent.Rag;
 using AssetBridge.Api.Agent.Services;
+using AssetBridge.Api.Models;
 
 namespace AssetBridge.Api.Controllers;
 
@@ -91,4 +92,32 @@ public class IncidentAgentController : ControllerBase
         var results = await _knowledgeBase.RetrieveRelevantDocumentsAsync(query);
         return Ok(results);
     }
+
+    /// <summary>
+    /// Retrieves audit log records of historical agent execution runs for traceability and evaluation.
+    /// </summary>
+    [HttpGet("runs")]
+    [ProducesResponseType(typeof(List<AgentExecutionRecord>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<List<AgentExecutionRecord>>> GetExecutionRuns([FromQuery] int? incidentId = null)
+    {
+        var logs = await _agent.GetExecutionLogsAsync(incidentId);
+        return Ok(logs);
+    }
+
+    /// <summary>
+    /// Retrieves a specific agent execution audit log record by ID.
+    /// </summary>
+    [HttpGet("runs/{id:int}")]
+    [ProducesResponseType(typeof(AgentExecutionRecord), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<AgentExecutionRecord>> GetExecutionRunById(int id)
+    {
+        var log = await _agent.GetExecutionLogByIdAsync(id);
+        if (log == null)
+        {
+            return NotFound(new { error = $"Execution record {id} not found." });
+        }
+        return Ok(log);
+    }
 }
+

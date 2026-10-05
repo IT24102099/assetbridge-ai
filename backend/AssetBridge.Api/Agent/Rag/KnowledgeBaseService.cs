@@ -9,18 +9,34 @@ public class KnowledgeBaseService : IKnowledgeBaseService
         new KnowledgeDocument
         {
             Id = "DOC-PLUMB-01",
-            Title = "Residential & Municipal Water Leakage Response Manual (SLS 147)",
+            Title = "Residential Kitchen & Municipal Water Leakage Response Manual (SLS 147)",
             Category = "Plumbing & Hydraulics",
-            Content = "Comprehensive emergency guidelines for pressurized water pipes, booster pumps, and valve failures. Outlines isolation protocol, pressure surge relief, flange gasket replacement, and emergency water diversion. Critical in preventing structural undermining and foundation erosion in Sri Lankan urban and coastal facilities.",
-            Keywords = new() { "water", "leak", "pipe", "pump", "pressure", "valve", "cavitation", "burst", "plumbing", "drainage", "kitchen", "bathroom" },
+            Content = "Emergency guidelines for domestic kitchen sinks, bathroom pipe bursts, pressurized water lines, booster pumps, and valve failures. Outlines immediate water shut-off protocols, isolation valves under sinks, pressure surge relief, and water diversion. Critical in preventing structural undermining, tenant disruption, and mold growth.",
+            Keywords = new() { "water", "leak", "kitchen", "sink", "pipe", "pump", "pressure", "valve", "cavitation", "burst", "plumbing", "drainage", "tap", "flooding", "bathroom" },
             ImmediateSafetyActions = new()
             {
-                "Immediately shut off the primary intake/isolation valve upstream of the defect.",
-                "De-energize booster pumps and nearby electrical sockets to prevent electrical shocks.",
-                "Relieve residual line pressure through the nearest downstream drainage tap.",
-                "Deploy temporary catchment containers and sandbags to divert runoff."
+                "Immediately shut off the primary intake valve or under-sink stopcock.",
+                "Turn off booster pumps and nearby electrical sockets to prevent electrical shocks.",
+                "Relieve residual line pressure through the lowest cold water tap.",
+                "Deploy temporary catchment containers and towels to divert runoff."
             },
             RecommendedTrade = "Licensed Commercial & Residential Plumber"
+        },
+        new KnowledgeDocument
+        {
+            Id = "DOC-ELEC-06",
+            Title = "Residential Electrical Socket, Wall Outlet & Wiring Safety Guidelines (CEB / IET)",
+            Category = "Residential Electrical & Safety",
+            Content = "Standard operating procedures for domestic electrical socket issues, wall outlet sparks, burning smells, tripping circuit breakers (MCB/RCD), and short circuits in residential and commercial premises. Outlines electrical disconnection, insulation testing, and hazardous arc prevention.",
+            Keywords = new() { "electrical", "socket", "outlet", "plug", "switch", "spark", "tripping", "breaker", "short", "wire", "shock", "power", "fuse", "burn" },
+            ImmediateSafetyActions = new()
+            {
+                "Immediately switch off the main Residual Current Device (RCD / RCCB) or branch circuit breaker on the distribution panel.",
+                "Do NOT touch scorched, sparking, or warm wall sockets with bare hands.",
+                "Unplug all connected kitchen or household appliances from the affected circuit line.",
+                "Keep a dry powder or CO2 fire extinguisher accessible; NEVER use water on electrical defects."
+            },
+            RecommendedTrade = "Licensed Domestic & Commercial Electrician"
         },
         new KnowledgeDocument
         {

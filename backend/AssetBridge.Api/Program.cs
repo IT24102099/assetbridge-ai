@@ -76,6 +76,12 @@ app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
+// 7. Seed Initial Demonstration Data into PostgreSQL
+await DbSeeder.SeedAsync(app.Services);
+
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
+

@@ -13,6 +13,7 @@ public class AppDbContext : DbContext
     public DbSet<Incident> Incidents => Set<Incident>();
     public DbSet<IncidentEvidence> IncidentEvidences => Set<IncidentEvidence>();
     public DbSet<AssetHistory> AssetHistories => Set<AssetHistory>();
+    public DbSet<AgentExecutionRecord> AgentExecutionRecords => Set<AgentExecutionRecord>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

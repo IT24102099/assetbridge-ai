@@ -71,7 +71,23 @@ public class IncidentService : IIncidentService
 
     public async Task<IncidentDto> CreateAsync(CreateIncidentDto dto)
     {
-        // 1. Validation: Verify that linked Asset exists
+        // 1. Validation: Verify title, description, and budget
+        if (string.IsNullOrWhiteSpace(dto.Title))
+        {
+            throw new ArgumentException("Incident title is required.", nameof(dto.Title));
+        }
+
+        if (string.IsNullOrWhiteSpace(dto.Description))
+        {
+            throw new ArgumentException("Incident description is required.", nameof(dto.Description));
+        }
+
+        if (dto.Budget.HasValue && dto.Budget.Value < 0)
+        {
+            throw new ArgumentException("Incident budget cannot be negative.", nameof(dto.Budget));
+        }
+
+        // Verify that linked Asset exists
         var asset = await _context.Assets.FindAsync(dto.AssetId);
         if (asset == null)
         {
