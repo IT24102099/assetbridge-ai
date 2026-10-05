@@ -1,7 +1,7 @@
 {
   "agentRuns": [
     {
-      "id": "agent-run-1791208590035-180",
+      "id": "agent-run-1791210769318-551",
       "agentName": "Provider Intelligence Agent",
       "requestInput": {
         "maintenanceRequirement": "HVAC unit failure in North facility warehouse",
@@ -9,12 +9,12 @@
         "location": "North Region",
         "requiredDate": "2026-10-06"
       },
-      "startTime": "2026-10-05T13:56:30.035Z",
+      "startTime": "2026-10-05T14:32:49.318Z",
       "status": "COMPLETED",
       "toolCalls": [
         {
-          "id": "tool-1791208590039-724",
-          "agentRunId": "agent-run-1791208590035-180",
+          "id": "tool-1791210769330-955",
+          "agentRunId": "agent-run-1791210769318-551",
           "toolName": "searchProvidersTool",
           "input": {
             "skill": "Maintenance",
@@ -48,11 +48,11 @@
               "description": "Apex Maintenance offers 24/7 emergency repair and routine preventative maintenance for industrial and commercial facilities."
             }
           ],
-          "timestamp": "2026-10-05T13:56:30.039Z"
+          "timestamp": "2026-10-05T14:32:49.330Z"
         },
         {
-          "id": "tool-1791208590039-662",
-          "agentRunId": "agent-run-1791208590035-180",
+          "id": "tool-1791210769331-38",
+          "agentRunId": "agent-run-1791210769318-551",
           "toolName": "checkProviderAvailabilityTool",
           "input": {
             "providerId": "prov-1",
@@ -61,11 +61,11 @@
           "output": {
             "status": "AVAILABLE"
           },
-          "timestamp": "2026-10-05T13:56:30.039Z"
+          "timestamp": "2026-10-05T14:32:49.332Z"
         },
         {
-          "id": "tool-1791208590057-937",
-          "agentRunId": "agent-run-1791208590035-180",
+          "id": "tool-1791210769383-351",
+          "agentRunId": "agent-run-1791210769318-551",
           "toolName": "runDeterministicMatchingTool",
           "input": {
             "criteria": {
@@ -110,10 +110,10 @@
               "availability": "AVAILABLE"
             }
           ],
-          "timestamp": "2026-10-05T13:56:30.057Z"
+          "timestamp": "2026-10-05T14:32:49.383Z"
         }
       ],
-      "endTime": "2026-10-05T13:56:30.058Z",
+      "endTime": "2026-10-05T14:32:49.384Z",
       "outputResult": {
         "request": {
           "maintenanceRequirement": "HVAC unit failure in North facility warehouse",
@@ -141,24 +141,24 @@
           }
         ],
         "warnings": [],
-        "agentRunId": "agent-run-1791208590035-180",
-        "timestamp": "2026-10-05T13:56:30.058Z"
+        "agentRunId": "agent-run-1791210769318-551",
+        "timestamp": "2026-10-05T14:32:49.384Z"
       }
     },
     {
-      "id": "agent-run-1791208590098-314",
+      "id": "agent-run-1791210769458-389",
       "agentName": "Provider Intelligence Agent",
       "requestInput": {
         "maintenanceRequirement": "Legal deed clearance",
         "requiredSkill": "Legal",
         "location": "South Region"
       },
-      "startTime": "2026-10-05T13:56:30.098Z",
+      "startTime": "2026-10-05T14:32:49.458Z",
       "status": "COMPLETED",
       "toolCalls": [
         {
-          "id": "tool-1791208590101-733",
-          "agentRunId": "agent-run-1791208590098-314",
+          "id": "tool-1791210769461-33",
+          "agentRunId": "agent-run-1791210769458-389",
           "toolName": "searchProvidersTool",
           "input": {
             "skill": "Legal",
@@ -191,11 +191,11 @@
               "description": "Comprehensive legal support for asset ownership disputes, title clearance, lease structuring, and lien verifications."
             }
           ],
-          "timestamp": "2026-10-05T13:56:30.101Z"
+          "timestamp": "2026-10-05T14:32:49.461Z"
         },
         {
-          "id": "tool-1791208590101-738",
-          "agentRunId": "agent-run-1791208590098-314",
+          "id": "tool-1791210769461-892",
+          "agentRunId": "agent-run-1791210769458-389",
           "toolName": "runDeterministicMatchingTool",
           "input": {
             "criteria": {
@@ -238,10 +238,10 @@
               "availability": "AVAILABLE"
             }
           ],
-          "timestamp": "2026-10-05T13:56:30.101Z"
+          "timestamp": "2026-10-05T14:32:49.461Z"
         }
       ],
-      "endTime": "2026-10-05T13:56:30.101Z",
+      "endTime": "2026-10-05T14:32:49.462Z",
       "outputResult": {
         "request": {
           "maintenanceRequirement": "Legal deed clearance",
@@ -268,24 +268,24 @@
           }
         ],
         "warnings": [],
-        "agentRunId": "agent-run-1791208590098-314",
-        "timestamp": "2026-10-05T13:56:30.101Z"
+        "agentRunId": "agent-run-1791210769458-389",
+        "timestamp": "2026-10-05T14:32:49.462Z"
       }
     },
     {
-      "id": "agent-run-1791208590121-722",
+      "id": "agent-run-1791210769494-417",
       "agentName": "Provider Intelligence Agent",
       "requestInput": {
         "maintenanceRequirement": "Emergency structural inspection",
         "requiredSkill": "Inspection",
         "requiredDate": "2026-10-06"
       },
-      "startTime": "2026-10-05T13:56:30.121Z",
+      "startTime": "2026-10-05T14:32:49.494Z",
       "status": "COMPLETED",
       "toolCalls": [
         {
-          "id": "tool-1791208590124-549",
-          "agentRunId": "agent-run-1791208590121-722",
+          "id": "tool-1791210769499-942",
+          "agentRunId": "agent-run-1791210769494-417",
           "toolName": "searchProvidersTool",
           "input": {
             "skill": "Inspection"
@@ -343,11 +343,11 @@
               "description": "Environmental hazard analysis, soil testing, and sustainability rating assessments for commercial properties."
             }
           ],
-          "timestamp": "2026-10-05T13:56:30.124Z"
+          "timestamp": "2026-10-05T14:32:49.499Z"
         },
         {
-          "id": "tool-1791208590124-391",
-          "agentRunId": "agent-run-1791208590121-722",
+          "id": "tool-1791210769499-547",
+          "agentRunId": "agent-run-1791210769494-417",
           "toolName": "checkProviderAvailabilityTool",
           "input": {
             "providerId": "prov-2",
@@ -356,11 +356,11 @@
           "output": {
             "status": "BUSY"
           },
-          "timestamp": "2026-10-05T13:56:30.124Z"
+          "timestamp": "2026-10-05T14:32:49.499Z"
         },
         {
-          "id": "tool-1791208590124-625",
-          "agentRunId": "agent-run-1791208590121-722",
+          "id": "tool-1791210769499-284",
+          "agentRunId": "agent-run-1791210769494-417",
           "toolName": "checkProviderAvailabilityTool",
           "input": {
             "providerId": "prov-7",
@@ -369,11 +369,11 @@
           "output": {
             "status": "AVAILABLE"
           },
-          "timestamp": "2026-10-05T13:56:30.124Z"
+          "timestamp": "2026-10-05T14:32:49.499Z"
         },
         {
-          "id": "tool-1791208590124-14",
-          "agentRunId": "agent-run-1791208590121-722",
+          "id": "tool-1791210769499-158",
+          "agentRunId": "agent-run-1791210769494-417",
           "toolName": "runDeterministicMatchingTool",
           "input": {
             "criteria": {
@@ -450,10 +450,10 @@
               "availability": "AVAILABLE"
             }
           ],
-          "timestamp": "2026-10-05T13:56:30.124Z"
+          "timestamp": "2026-10-05T14:32:49.499Z"
         }
       ],
-      "endTime": "2026-10-05T13:56:30.125Z",
+      "endTime": "2026-10-05T14:32:49.499Z",
       "outputResult": {
         "request": {
           "maintenanceRequirement": "Emergency structural inspection",
@@ -499,23 +499,23 @@
           }
         ],
         "warnings": [],
-        "agentRunId": "agent-run-1791208590121-722",
-        "timestamp": "2026-10-05T13:56:30.125Z"
+        "agentRunId": "agent-run-1791210769494-417",
+        "timestamp": "2026-10-05T14:32:49.499Z"
       }
     },
     {
-      "id": "agent-run-1791208590143-571",
+      "id": "agent-run-1791210769544-551",
       "agentName": "Provider Intelligence Agent",
       "requestInput": {
         "maintenanceRequirement": "Routine facility repair",
         "requiredSkill": "Maintenance"
       },
-      "startTime": "2026-10-05T13:56:30.144Z",
+      "startTime": "2026-10-05T14:32:49.544Z",
       "status": "COMPLETED",
       "toolCalls": [
         {
-          "id": "tool-1791208590147-453",
-          "agentRunId": "agent-run-1791208590143-571",
+          "id": "tool-1791210769611-532",
+          "agentRunId": "agent-run-1791210769544-551",
           "toolName": "searchProvidersTool",
           "input": {
             "skill": "Maintenance"
@@ -573,11 +573,11 @@
               "description": "On-site heavy equipment overhauls, engine rebuilding, and fleet maintenance contracts."
             }
           ],
-          "timestamp": "2026-10-05T13:56:30.147Z"
+          "timestamp": "2026-10-05T14:32:49.611Z"
         },
         {
-          "id": "tool-1791208590147-325",
-          "agentRunId": "agent-run-1791208590143-571",
+          "id": "tool-1791210769612-312",
+          "agentRunId": "agent-run-1791210769544-551",
           "toolName": "runDeterministicMatchingTool",
           "input": {
             "criteria": {
@@ -653,10 +653,10 @@
               "availability": "AVAILABLE"
             }
           ],
-          "timestamp": "2026-10-05T13:56:30.147Z"
+          "timestamp": "2026-10-05T14:32:49.612Z"
         }
       ],
-      "endTime": "2026-10-05T13:56:30.147Z",
+      "endTime": "2026-10-05T14:32:49.612Z",
       "outputResult": {
         "request": {
           "maintenanceRequirement": "Routine facility repair",
@@ -697,35 +697,35 @@
           }
         ],
         "warnings": [],
-        "agentRunId": "agent-run-1791208590143-571",
-        "timestamp": "2026-10-05T13:56:30.147Z"
+        "agentRunId": "agent-run-1791210769544-551",
+        "timestamp": "2026-10-05T14:32:49.612Z"
       }
     },
     {
-      "id": "agent-run-1791208590166-552",
+      "id": "agent-run-1791210769648-329",
       "agentName": "Provider Intelligence Agent",
       "requestInput": {
         "maintenanceRequirement": "Deep space satellite calibration",
         "requiredSkill": "Astronautics",
         "location": "Unknown Galaxy"
       },
-      "startTime": "2026-10-05T13:56:30.166Z",
+      "startTime": "2026-10-05T14:32:49.648Z",
       "status": "COMPLETED",
       "toolCalls": [
         {
-          "id": "tool-1791208590170-320",
-          "agentRunId": "agent-run-1791208590166-552",
+          "id": "tool-1791210769653-89",
+          "agentRunId": "agent-run-1791210769648-329",
           "toolName": "searchProvidersTool",
           "input": {
             "skill": "Astronautics",
             "location": "Unknown Galaxy"
           },
           "output": [],
-          "timestamp": "2026-10-05T13:56:30.170Z"
+          "timestamp": "2026-10-05T14:32:49.653Z"
         },
         {
-          "id": "tool-1791208590170-397",
-          "agentRunId": "agent-run-1791208590166-552",
+          "id": "tool-1791210769653-876",
+          "agentRunId": "agent-run-1791210769648-329",
           "toolName": "runDeterministicMatchingTool",
           "input": {
             "criteria": {
@@ -734,10 +734,10 @@
             }
           },
           "output": [],
-          "timestamp": "2026-10-05T13:56:30.170Z"
+          "timestamp": "2026-10-05T14:32:49.653Z"
         }
       ],
-      "endTime": "2026-10-05T13:56:30.171Z",
+      "endTime": "2026-10-05T14:32:49.653Z",
       "outputResult": {
         "request": {
           "maintenanceRequirement": "Deep space satellite calibration",
@@ -748,23 +748,23 @@
         "warnings": [
           "No providers found matching skill 'Astronautics' in region 'Unknown Galaxy'."
         ],
-        "agentRunId": "agent-run-1791208590166-552",
-        "timestamp": "2026-10-05T13:56:30.171Z"
+        "agentRunId": "agent-run-1791210769648-329",
+        "timestamp": "2026-10-05T14:32:49.653Z"
       }
     },
     {
-      "id": "agent-run-1791208590206-234",
+      "id": "agent-run-1791210769714-593",
       "agentName": "Provider Intelligence Agent",
       "requestInput": {
         "maintenanceRequirement": "Hydraulics repair",
         "requiredSkill": "Maintenance"
       },
-      "startTime": "2026-10-05T13:56:30.206Z",
+      "startTime": "2026-10-05T14:32:49.714Z",
       "status": "COMPLETED",
       "toolCalls": [
         {
-          "id": "tool-1791208590210-737",
-          "agentRunId": "agent-run-1791208590206-234",
+          "id": "tool-1791210769719-783",
+          "agentRunId": "agent-run-1791210769714-593",
           "toolName": "searchProvidersTool",
           "input": {
             "skill": "Maintenance"
@@ -822,11 +822,11 @@
               "description": "On-site heavy equipment overhauls, engine rebuilding, and fleet maintenance contracts."
             }
           ],
-          "timestamp": "2026-10-05T13:56:30.210Z"
+          "timestamp": "2026-10-05T14:32:49.719Z"
         },
         {
-          "id": "tool-1791208590210-47",
-          "agentRunId": "agent-run-1791208590206-234",
+          "id": "tool-1791210769720-820",
+          "agentRunId": "agent-run-1791210769714-593",
           "toolName": "runDeterministicMatchingTool",
           "input": {
             "criteria": {
@@ -902,10 +902,10 @@
               "availability": "AVAILABLE"
             }
           ],
-          "timestamp": "2026-10-05T13:56:30.210Z"
+          "timestamp": "2026-10-05T14:32:49.720Z"
         }
       ],
-      "endTime": "2026-10-05T13:56:30.210Z",
+      "endTime": "2026-10-05T14:32:49.721Z",
       "outputResult": {
         "request": {
           "maintenanceRequirement": "Hydraulics repair",
@@ -946,153 +946,8 @@
           }
         ],
         "warnings": [],
-        "agentRunId": "agent-run-1791208590206-234",
-        "timestamp": "2026-10-05T13:56:30.210Z"
-      }
-    },
-    {
-      "id": "agent-run-1791209210281-580",
-      "agentName": "Provider Intelligence Agent",
-      "requestInput": {
-        "maintenanceRequirement": "Cooling system compressor failure in main cold storage warehouse, urgent HVAC technician required.",
-        "requiredSkill": "Maintenance",
-        "location": "North Region",
-        "requiredDate": "2026-10-06"
-      },
-      "startTime": "2026-10-05T14:06:50.281Z",
-      "status": "COMPLETED",
-      "toolCalls": [
-        {
-          "id": "tool-1791209210287-855",
-          "agentRunId": "agent-run-1791209210281-580",
-          "toolName": "searchProvidersTool",
-          "input": {
-            "skill": "Maintenance",
-            "location": "North Region"
-          },
-          "output": [
-            {
-              "id": "prov-1",
-              "code": "SP-2001",
-              "companyName": "Apex Maintenance Services Ltd.",
-              "contactPerson": "Robert Sterling",
-              "email": "contact@apexmaintenance.com",
-              "phone": "+1 (555) 888-1122",
-              "address": "104 Industrial Parkway, Suite 400",
-              "location": "North Region",
-              "registrationNumber": "REG-991823",
-              "skills": [
-                "Maintenance",
-                "HVAC",
-                "Electrical Repair"
-              ],
-              "serviceAreas": [
-                "North Region",
-                "Greater Metro Area"
-              ],
-              "rating": 4.8,
-              "reviewCount": 38,
-              "jobsCount": 142,
-              "verificationStatus": "VERIFIED",
-              "insuranceStatus": "VERIFIED",
-              "description": "Apex Maintenance offers 24/7 emergency repair and routine preventative maintenance for industrial and commercial facilities."
-            }
-          ],
-          "timestamp": "2026-10-05T14:06:50.288Z"
-        },
-        {
-          "id": "tool-1791209210288-922",
-          "agentRunId": "agent-run-1791209210281-580",
-          "toolName": "checkProviderAvailabilityTool",
-          "input": {
-            "providerId": "prov-1",
-            "date": "2026-10-06"
-          },
-          "output": {
-            "status": "AVAILABLE"
-          },
-          "timestamp": "2026-10-05T14:06:50.288Z"
-        },
-        {
-          "id": "tool-1791209210289-309",
-          "agentRunId": "agent-run-1791209210281-580",
-          "toolName": "runDeterministicMatchingTool",
-          "input": {
-            "criteria": {
-              "skill": "Maintenance",
-              "location": "North Region",
-              "availableDate": "2026-10-06"
-            }
-          },
-          "output": [
-            {
-              "provider": {
-                "id": "prov-1",
-                "code": "SP-2001",
-                "companyName": "Apex Maintenance Services Ltd.",
-                "contactPerson": "Robert Sterling",
-                "email": "contact@apexmaintenance.com",
-                "phone": "+1 (555) 888-1122",
-                "address": "104 Industrial Parkway, Suite 400",
-                "location": "North Region",
-                "registrationNumber": "REG-991823",
-                "skills": [
-                  "Maintenance",
-                  "HVAC",
-                  "Electrical Repair"
-                ],
-                "serviceAreas": [
-                  "North Region",
-                  "Greater Metro Area"
-                ],
-                "rating": 4.8,
-                "reviewCount": 38,
-                "jobsCount": 142,
-                "verificationStatus": "VERIFIED",
-                "insuranceStatus": "VERIFIED",
-                "description": "Apex Maintenance offers 24/7 emergency repair and routine preventative maintenance for industrial and commercial facilities."
-              },
-              "location": "North Region",
-              "distance": 5,
-              "rating": 4.8,
-              "verificationStatus": "VERIFIED",
-              "jobsCount": 142,
-              "availability": "AVAILABLE"
-            }
-          ],
-          "timestamp": "2026-10-05T14:06:50.289Z"
-        }
-      ],
-      "endTime": "2026-10-05T14:06:50.292Z",
-      "outputResult": {
-        "request": {
-          "maintenanceRequirement": "Cooling system compressor failure in main cold storage warehouse, urgent HVAC technician required.",
-          "requiredSkill": "Maintenance",
-          "location": "North Region",
-          "requiredDate": "2026-10-06"
-        },
-        "recommendations": [
-          {
-            "providerId": "prov-1",
-            "providerName": "Apex Maintenance Services Ltd.",
-            "matchScore": 0.99,
-            "reasons": [
-              "Possesses required maintenance skill: 'Maintenance'",
-              "Proximity match: Local operator located within 5 km of North Region",
-              "Available for dispatch on requested date 2026-10-06",
-              "Proven track record: 142 completed asset maintenance jobs with 4.8/5.0 rating",
-              "Compliance verified: Certified service provider with active insurance"
-            ],
-            "availability": "AVAILABLE",
-            "relevantExperience": "142 completed jobs (Maintenance, HVAC, Electrical Repair)",
-            "rating": 4.8,
-            "verificationStatus": "VERIFIED",
-            "distanceKm": 5
-          }
-        ],
-        "warnings": [],
-        "agentRunId": "agent-run-1791209210281-580",
-        "timestamp": "2026-10-05T14:06:50.291Z"
+        "agentRunId": "agent-run-1791210769714-593",
+        "timestamp": "2026-10-05T14:32:49.721Z"
       }
     }
   ],
