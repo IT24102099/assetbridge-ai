@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import type {
   Representative,
   ServiceProvider,
@@ -12,6 +12,20 @@ import {
   initialAvailabilitySlots,
 } from '../data/mock-data'
 import { calculateProviderMatch } from '../utils/matching'
+import {
+  fetchRepresentativesApi,
+  createRepresentativeApi,
+  updateRepresentativeApi,
+  deleteRepresentativeApi,
+  fetchProvidersApi,
+  createProviderApi,
+  updateProviderApi,
+  deleteProviderApi,
+  fetchProviderAvailabilityApi,
+  createAvailabilitySlotApi,
+  updateAvailabilitySlotApi,
+  deleteAvailabilitySlotApi,
+} from '../services/provider-coordination-api'
 
 interface ProviderCoordinationContextType {
   representatives: Representative[]
@@ -48,6 +62,34 @@ export function ProviderCoordinationProvider({ children }: { children: React.Rea
   const [providers, setProviders] = useState<ServiceProvider[]>(initialProviders)
   const [availabilitySlots, setAvailabilitySlots] = useState<AvailabilitySlot[]>(initialAvailabilitySlots)
 
+  // Fetch initial state from backend APIs
+  useEffect(() => {
+    let isMounted = true
+    async function loadBackendData() {
+      const reps = await fetchRepresentativesApi()
+      if (reps && isMounted) {
+        setRepresentatives(reps)
+      }
+
+      const provs = await fetchProvidersApi()
+      if (provs && isMounted) {
+        setProviders(provs)
+
+        // Fetch availability slots for first provider
+        if (provs.length > 0) {
+          const slots = await fetchProviderAvailabilityApi(provs[0].id)
+          if (slots && isMounted && slots.length > 0) {
+            setAvailabilitySlots(slots)
+          }
+        }
+      }
+    }
+    loadBackendData()
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
   // Add Representative
   const addRepresentative = (
     data: Omit<Representative, 'id' | 'code' | 'assignedProvidersCount' | 'activeTasks'>
@@ -60,6 +102,7 @@ export function ProviderCoordinationProvider({ children }: { children: React.Rea
       activeTasks: 0,
     }
     setRepresentatives((prev) => [newRep, ...prev])
+    createRepresentativeApi(data)
   }
 
   // Update Representative
@@ -74,6 +117,7 @@ export function ProviderCoordinationProvider({ children }: { children: React.Rea
         )
       )
     }
+    updateRepresentativeApi(id, data)
   }
 
   // Delete Representative
@@ -86,6 +130,7 @@ export function ProviderCoordinationProvider({ children }: { children: React.Rea
           : p
       )
     )
+    deleteRepresentativeApi(id)
   }
 
   // Add Provider
@@ -112,6 +157,7 @@ export function ProviderCoordinationProvider({ children }: { children: React.Rea
         )
       )
     }
+    createProviderApi(data)
   }
 
   // Update Provider
@@ -119,6 +165,7 @@ export function ProviderCoordinationProvider({ children }: { children: React.Rea
     setProviders((prev) =>
       prev.map((p) => (p.id === id ? { ...p, ...data } : p))
     )
+    updateProviderApi(id, data)
   }
 
   // Delete Provider
@@ -135,6 +182,7 @@ export function ProviderCoordinationProvider({ children }: { children: React.Rea
     }
     setProviders((prev) => prev.filter((p) => p.id !== id))
     setAvailabilitySlots((prev) => prev.filter((s) => s.providerId !== id))
+    deleteProviderApi(id)
   }
 
   // Assign Representative to Provider
@@ -169,6 +217,7 @@ export function ProviderCoordinationProvider({ children }: { children: React.Rea
         return r
       })
     )
+    updateProviderApi(providerId, { assignedRepresentativeId: representativeId })
   }
 
   // Add Availability Slot
@@ -178,6 +227,7 @@ export function ProviderCoordinationProvider({ children }: { children: React.Rea
       id: `slot-${Date.now()}`,
     }
     setAvailabilitySlots((prev) => [...prev, newSlot])
+    createAvailabilitySlotApi(slot.providerId, slot)
   }
 
   // Update Availability Slot
@@ -185,11 +235,19 @@ export function ProviderCoordinationProvider({ children }: { children: React.Rea
     setAvailabilitySlots((prev) =>
       prev.map((s) => (s.id === id ? { ...s, ...data } : s))
     )
+    const slot = availabilitySlots.find((s) => s.id === id)
+    if (slot) {
+      updateAvailabilitySlotApi(slot.providerId, id, data)
+    }
   }
 
   // Delete Availability Slot
   const deleteAvailabilitySlot = (id: string) => {
+    const slot = availabilitySlots.find((s) => s.id === id)
     setAvailabilitySlots((prev) => prev.filter((s) => s.id !== id))
+    if (slot) {
+      deleteAvailabilitySlotApi(slot.providerId, id)
+    }
   }
 
   // Book Availability Slot
@@ -212,10 +270,18 @@ export function ProviderCoordinationProvider({ children }: { children: React.Rea
           : s
       )
     )
+    const slot = availabilitySlots.find((s) => s.id === slotId)
+    if (slot) {
+      updateAvailabilitySlotApi(slot.providerId, slotId, {
+        status: 'booked',
+        notes: notes || taskTitle,
+      })
+    }
   }
 
   // Matching Engine
   const runMatchingEngine = (criteria: ProviderMatchCriteria): ProviderMatchResult[] => {
+    // Synchronous matching calculation for immediate responsive UI feedback
     return providers
       .map((prov) => calculateProviderMatch(prov, criteria, availabilitySlots))
       .sort((a, b) => b.matchScore - a.matchScore)
