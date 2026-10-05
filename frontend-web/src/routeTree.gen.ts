@@ -21,7 +21,9 @@ import { Route as errors500RouteImport } from './routes/(errors)/500'
 import { Route as errors503RouteImport } from './routes/(errors)/503'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
+import { Route as AuthenticatedAssetsIndexRouteImport } from './routes/_authenticated/assets/index'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
+import { Route as AuthenticatedIncidentsIndexRouteImport } from './routes/_authenticated/incidents/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedSettingsAccountRouteImport } from './routes/_authenticated/settings/account'
 import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_authenticated/settings/appearance'
@@ -88,10 +90,22 @@ const AuthenticatedSettingsRouteRoute =
     path: '/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAssetsIndexRoute =
+  AuthenticatedAssetsIndexRouteImport.update({
+    id: '/assets/',
+    path: '/assets/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedErrorsErrorRoute =
   AuthenticatedErrorsErrorRouteImport.update({
     id: '/errors/$error',
     path: '/errors/$error',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedIncidentsIndexRoute =
+  AuthenticatedIncidentsIndexRouteImport.update({
+    id: '/incidents/',
+    path: '/incidents/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedSettingsIndexRoute =
@@ -142,6 +156,8 @@ export interface FileRoutesByFullPath {
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+  '/assets/': typeof AuthenticatedAssetsIndexRoute
+  '/incidents/': typeof AuthenticatedIncidentsIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -160,6 +176,8 @@ export interface FileRoutesByTo {
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+  '/assets': typeof AuthenticatedAssetsIndexRoute
+  '/incidents': typeof AuthenticatedIncidentsIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRoutesById {
@@ -181,6 +199,8 @@ export interface FileRoutesById {
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/_authenticated/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+  '/_authenticated/assets/': typeof AuthenticatedAssetsIndexRoute
+  '/_authenticated/incidents/': typeof AuthenticatedIncidentsIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRouteTypes {
@@ -202,6 +222,8 @@ export interface FileRouteTypes {
     | '/settings/appearance'
     | '/settings/display'
     | '/settings/notifications'
+    | '/assets/'
+    | '/incidents/'
     | '/settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -220,6 +242,8 @@ export interface FileRouteTypes {
     | '/settings/appearance'
     | '/settings/display'
     | '/settings/notifications'
+    | '/assets'
+    | '/incidents'
     | '/settings'
   id:
     | '__root__'
@@ -240,6 +264,8 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/appearance'
     | '/_authenticated/settings/display'
     | '/_authenticated/settings/notifications'
+    | '/_authenticated/assets/'
+    | '/_authenticated/incidents/'
     | '/_authenticated/settings/'
   fileRoutesById: FileRoutesById
 }
@@ -342,11 +368,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/assets/': {
+      id: '/_authenticated/assets/'
+      path: '/assets'
+      fullPath: '/assets/'
+      preLoaderRoute: typeof AuthenticatedAssetsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/errors/$error': {
       id: '/_authenticated/errors/$error'
       path: '/errors/$error'
       fullPath: '/errors/$error'
       preLoaderRoute: typeof AuthenticatedErrorsErrorRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/incidents/': {
+      id: '/_authenticated/incidents/'
+      path: '/incidents'
+      fullPath: '/incidents/'
+      preLoaderRoute: typeof AuthenticatedIncidentsIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/settings/': {
@@ -414,12 +454,16 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
+  AuthenticatedAssetsIndexRoute: typeof AuthenticatedAssetsIndexRoute
+  AuthenticatedIncidentsIndexRoute: typeof AuthenticatedIncidentsIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
+  AuthenticatedAssetsIndexRoute: AuthenticatedAssetsIndexRoute,
+  AuthenticatedIncidentsIndexRoute: AuthenticatedIncidentsIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
