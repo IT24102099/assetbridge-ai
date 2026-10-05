@@ -10,6 +10,16 @@ class ApiClient {
 
   final SecureStorageService _secureStorage = SecureStorageService();
 
+
+  /// Member 2 Express Backend Base URL
+  String get defaultBaseUrl {
+    try {
+      if (Platform.isAndroid) {
+        return 'http://10.0.2.2:5000/api';
+      }
+    } catch (_) {}
+    return 'http://localhost:5000/api';
+
   /// Default API endpoint for ASP.NET Core backend
   /// Uses 10.0.2.2 for Android emulator loopback and localhost for iOS/macOS/web
   String get defaultBaseUrl {
@@ -19,6 +29,7 @@ class ApiClient {
       }
     } catch (_) {}
     return 'http://localhost:5148/api';
+
   }
 
   Future<Map<String, String>> _getHeaders() async {
@@ -43,7 +54,11 @@ class ApiClient {
     }
 
     final headers = await _getHeaders();
+
+    return await http.get(uri, headers: headers).timeout(const Duration(seconds: 10));
+
     return await http.get(uri, headers: headers).timeout(const Duration(seconds: 8));
+
   }
 
   Future<http.Response> post(String endpoint, {Map<String, dynamic>? body}) async {
@@ -57,20 +72,35 @@ class ApiClient {
           headers: headers,
           body: body != null ? jsonEncode(body) : null,
         )
+
+        .timeout(const Duration(seconds: 10));
+  }
+
+  Future<http.Response> put(String endpoint, {Map<String, dynamic>? body}) async {
+
         .timeout(const Duration(seconds: 8));
   }
 
   Future<http.Response> patch(String endpoint, {Map<String, dynamic>? body}) async {
+
     final baseUrl = await _secureStorage.read(SecureStorageService.keyApiBaseUrl) ?? defaultBaseUrl;
     final uri = Uri.parse('$baseUrl$endpoint');
     final headers = await _getHeaders();
 
     return await http
+
+        .put(
+
         .patch(
+
           uri,
           headers: headers,
           body: body != null ? jsonEncode(body) : null,
         )
+
+        .timeout(const Duration(seconds: 10));
+
         .timeout(const Duration(seconds: 8));
+
   }
 }

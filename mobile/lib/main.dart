@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+
+import 'features/auth/rep_login_screen.dart';
+
 import 'screens/home_shell_screen.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +32,11 @@ class AssetBridgeMobileApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
+
+      home: const RepLoginScreen(),
+
       home: const HomeShellScreen(),
+
     );
   }
 }

@@ -13,9 +13,17 @@ import {
   UserCog,
   UserX,
   ShieldCheck,
+
+  AudioWaveform,
+  Command,
+  GalleryVerticalEnd,
+  UserCheck,
   Building2,
+  Sparkles,
+  Calendar,
   TriangleAlert,
   Boxes,
+
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
@@ -27,10 +35,10 @@ export const sidebarData: SidebarData = {
   },
   teams: [
     {
-      name: 'AssetBridge AI',
-      logo: Boxes,
-      plan: 'Enterprise Platform',
-    },
+  name: 'AssetBridge AI',
+  logo: Boxes,
+  plan: 'Enterprise Platform',
+},
     {
       name: 'Acme Facilities',
       logo: Building2,
@@ -55,6 +63,31 @@ export const sidebarData: SidebarData = {
           title: 'Incidents',
           url: '/incidents',
           icon: TriangleAlert,
+        },
+      ],
+    },
+    {
+      title: 'Provider Coordination',
+      items: [
+        {
+          title: 'Representatives',
+          url: '/provider-coordination/representatives',
+          icon: UserCheck,
+        },
+        {
+          title: 'Service Providers',
+          url: '/provider-coordination/providers',
+          icon: Building2,
+        },
+        {
+          title: 'Provider Matching',
+          url: '/provider-coordination/matching',
+          icon: Sparkles,
+        },
+        {
+          title: 'Availability Calendar',
+          url: '/provider-coordination/calendar',
+          icon: Calendar,
         },
       ],
     },

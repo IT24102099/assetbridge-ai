@@ -7,6 +7,17 @@ class SecureStorageService {
 
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
+
+  static const String keyAuthToken = 'auth_token';
+  static const String keyRepId = 'rep_id';
+  static const String keyRepName = 'rep_name';
+  static const String keyApiBaseUrl = 'api_base_url';
+
+  Future<void> write(String key, String value) async {
+    try {
+      await _storage.write(key: key, value: value);
+    } catch (_) {}
+
   // In-memory fallback if native storage is unavailable in test environments
   final Map<String, String> _memoryFallback = {};
 
@@ -22,10 +33,31 @@ class SecureStorageService {
     } catch (_) {
       // Fallback in memory
     }
+
   }
 
   Future<String?> read(String key) async {
     try {
+
+      return await _storage.read(key: key);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<void> delete(String key) async {
+    try {
+      await _storage.delete(key: key);
+    } catch (_) {}
+  }
+
+  Future<String?> getAuthToken() async {
+    return await read(keyAuthToken);
+  }
+
+  Future<void> setAuthToken(String token) async {
+    await write(keyAuthToken, token);
+
       final value = await _storage.read(key: key);
       if (value != null) return value;
     } catch (_) {
@@ -49,11 +81,17 @@ class SecureStorageService {
 
   Future<String?> getAuthToken() async {
     return await read(keyAuthToken);
+
   }
 
   Future<void> clearAuth() async {
     await delete(keyAuthToken);
+
+    await delete(keyRepId);
+    await delete(keyRepName);
+
     await delete(keyRefreshToken);
     await delete(keyUserId);
+
   }
 }
