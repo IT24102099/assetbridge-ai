@@ -3,20 +3,17 @@ import {
   LayoutDashboard,
   Monitor,
   Bug,
-  ListTodo,
   FileX,
   Lock,
   Bell,
-  Package,
   Palette,
   ServerOff,
   Settings,
   Wrench,
   UserCog,
   UserX,
-  Users,
-  MessagesSquare,
   ShieldCheck,
+
   AudioWaveform,
   Command,
   GalleryVerticalEnd,
@@ -24,35 +21,33 @@ import {
   Building2,
   Sparkles,
   Calendar,
+  TriangleAlert,
+  Boxes,
+
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
   user: {
-    name: 'satnaing',
-    email: 'satnaingdev@gmail.com',
+    name: 'Facility Admin',
+    email: 'admin@assetbridge.ai',
     avatar: '/avatars/shadcn.jpg',
   },
   teams: [
     {
-      name: 'AssetBridge AI',
-      logo: Command,
-      plan: 'Enterprise Asset Platform',
-    },
+  name: 'AssetBridge AI',
+  logo: Boxes,
+  plan: 'Enterprise Platform',
+},
     {
-      name: 'Acme Inc',
-      logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
-    },
-    {
-      name: 'Acme Corp.',
-      logo: AudioWaveform,
-      plan: 'Startup',
+      name: 'Acme Facilities',
+      logo: Building2,
+      plan: 'Public Infrastructure',
     },
   ],
   navGroups: [
     {
-      title: 'General',
+      title: 'Management',
       items: [
         {
           title: 'Dashboard',
@@ -60,25 +55,14 @@ export const sidebarData: SidebarData = {
           icon: LayoutDashboard,
         },
         {
-          title: 'Tasks',
-          url: '/tasks',
-          icon: ListTodo,
+          title: 'Assets',
+          url: '/assets',
+          icon: Building2,
         },
         {
-          title: 'Apps',
-          url: '/apps',
-          icon: Package,
-        },
-        {
-          title: 'Chats',
-          url: '/chats',
-          badge: '3',
-          icon: MessagesSquare,
-        },
-        {
-          title: 'Users',
-          url: '/users',
-          icon: Users,
+          title: 'Incidents',
+          url: '/incidents',
+          icon: TriangleAlert,
         },
       ],
     },
@@ -170,7 +154,7 @@ export const sidebarData: SidebarData = {
       ],
     },
     {
-      title: 'Other',
+      title: 'System',
       items: [
         {
           title: 'Settings',

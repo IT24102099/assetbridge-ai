@@ -1,5 +1,9 @@
 name: assetbridge_mobile
+
 description: "AssetBridge AI Mobile App for Field Representatives & Service Provider Management"
+
+description: "AssetBridge AI Mobile App for Remote Asset & Incident Management"
+
 publish_to: "none"
 version: 1.0.0+1
 

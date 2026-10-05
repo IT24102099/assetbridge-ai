@@ -22,10 +22,15 @@ import { Route as errors503RouteImport } from './routes/(errors)/503'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedProviderCoordinationRouteRouteImport } from './routes/_authenticated/provider-coordination/route'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
+import { Route as AuthenticatedAssetsIndexRouteImport } from './routes/_authenticated/assets/index'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
+
 import { Route as AuthenticatedProviderCoordinationIndexRouteImport } from './routes/_authenticated/provider-coordination/index'
 import { Route as AuthenticatedProviderCoordinationCalendarRouteImport } from './routes/_authenticated/provider-coordination/calendar'
 import { Route as AuthenticatedProviderCoordinationMatchingRouteImport } from './routes/_authenticated/provider-coordination/matching'
+
+import { Route as AuthenticatedIncidentsIndexRouteImport } from './routes/_authenticated/incidents/index'
+
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedSettingsAccountRouteImport } from './routes/_authenticated/settings/account'
 import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_authenticated/settings/appearance'
@@ -102,12 +107,19 @@ const AuthenticatedSettingsRouteRoute =
     path: '/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAssetsIndexRoute =
+  AuthenticatedAssetsIndexRouteImport.update({
+    id: '/assets/',
+    path: '/assets/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedErrorsErrorRoute =
   AuthenticatedErrorsErrorRouteImport.update({
     id: '/errors/$error',
     path: '/errors/$error',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+
 const AuthenticatedProviderCoordinationIndexRoute =
   AuthenticatedProviderCoordinationIndexRouteImport.update({
     id: '/',
@@ -125,6 +137,13 @@ const AuthenticatedProviderCoordinationMatchingRoute =
     id: '/matching',
     path: '/matching',
     getParentRoute: () => AuthenticatedProviderCoordinationRouteRoute,
+
+const AuthenticatedIncidentsIndexRoute =
+  AuthenticatedIncidentsIndexRouteImport.update({
+    id: '/incidents/',
+    path: '/incidents/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+
   } as any)
 const AuthenticatedSettingsIndexRoute =
   AuthenticatedSettingsIndexRouteImport.update({
@@ -203,7 +222,12 @@ export interface FileRoutesByFullPath {
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+
   '/provider-coordination/': typeof AuthenticatedProviderCoordinationIndexRoute
+
+  '/assets/': typeof AuthenticatedAssetsIndexRoute
+  '/incidents/': typeof AuthenticatedIncidentsIndexRoute
+
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/provider-coordination/providers/$providerId': typeof AuthenticatedProviderCoordinationProvidersProviderIdRoute
   '/provider-coordination/representatives/$representativeId': typeof AuthenticatedProviderCoordinationRepresentativesRepresentativeIdRoute
@@ -228,7 +252,12 @@ export interface FileRoutesByTo {
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+
   '/provider-coordination': typeof AuthenticatedProviderCoordinationIndexRoute
+
+  '/assets': typeof AuthenticatedAssetsIndexRoute
+  '/incidents': typeof AuthenticatedIncidentsIndexRoute
+
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/provider-coordination/providers/$providerId': typeof AuthenticatedProviderCoordinationProvidersProviderIdRoute
   '/provider-coordination/representatives/$representativeId': typeof AuthenticatedProviderCoordinationRepresentativesRepresentativeIdRoute
@@ -257,7 +286,12 @@ export interface FileRoutesById {
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/_authenticated/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+
   '/_authenticated/provider-coordination/': typeof AuthenticatedProviderCoordinationIndexRoute
+
+  '/_authenticated/assets/': typeof AuthenticatedAssetsIndexRoute
+  '/_authenticated/incidents/': typeof AuthenticatedIncidentsIndexRoute
+
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/provider-coordination/providers/$providerId': typeof AuthenticatedProviderCoordinationProvidersProviderIdRoute
   '/_authenticated/provider-coordination/representatives/$representativeId': typeof AuthenticatedProviderCoordinationRepresentativesRepresentativeIdRoute
@@ -286,7 +320,12 @@ export interface FileRouteTypes {
     | '/settings/appearance'
     | '/settings/display'
     | '/settings/notifications'
+
     | '/provider-coordination/'
+
+    | '/assets/'
+    | '/incidents/'
+
     | '/settings/'
     | '/provider-coordination/providers/$providerId'
     | '/provider-coordination/representatives/$representativeId'
@@ -311,7 +350,11 @@ export interface FileRouteTypes {
     | '/settings/appearance'
     | '/settings/display'
     | '/settings/notifications'
+
     | '/provider-coordination'
+    | '/assets'
+    | '/incidents'
+
     | '/settings'
     | '/provider-coordination/providers/$providerId'
     | '/provider-coordination/representatives/$representativeId'
@@ -339,7 +382,12 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/appearance'
     | '/_authenticated/settings/display'
     | '/_authenticated/settings/notifications'
+
     | '/_authenticated/provider-coordination/'
+
+    | '/_authenticated/assets/'
+    | '/_authenticated/incidents/'
+
     | '/_authenticated/settings/'
     | '/_authenticated/provider-coordination/providers/$providerId'
     | '/_authenticated/provider-coordination/representatives/$representativeId'
@@ -453,6 +501,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/assets/': {
+      id: '/_authenticated/assets/'
+      path: '/assets'
+      fullPath: '/assets/'
+      preLoaderRoute: typeof AuthenticatedAssetsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/errors/$error': {
       id: '/_authenticated/errors/$error'
       path: '/errors/$error'
@@ -460,6 +515,7 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedErrorsErrorRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+
     '/_authenticated/provider-coordination/': {
       id: '/_authenticated/provider-coordination/'
       path: '/'
@@ -480,6 +536,14 @@ declare module '@tanstack/react-router' {
       fullPath: '/provider-coordination/matching'
       preLoaderRoute: typeof AuthenticatedProviderCoordinationMatchingRouteImport
       parentRoute: typeof AuthenticatedProviderCoordinationRouteRoute
+
+    '/_authenticated/incidents/': {
+      id: '/_authenticated/incidents/'
+      path: '/incidents'
+      fullPath: '/incidents/'
+      preLoaderRoute: typeof AuthenticatedIncidentsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+
     }
     '/_authenticated/settings/': {
       id: '/_authenticated/settings/'
@@ -608,6 +672,8 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
+  AuthenticatedAssetsIndexRoute: typeof AuthenticatedAssetsIndexRoute
+  AuthenticatedIncidentsIndexRoute: typeof AuthenticatedIncidentsIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -616,6 +682,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
+  AuthenticatedAssetsIndexRoute: AuthenticatedAssetsIndexRoute,
+  AuthenticatedIncidentsIndexRoute: AuthenticatedIncidentsIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
