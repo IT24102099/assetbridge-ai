@@ -26,6 +26,14 @@ import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authen
 import { Route as AuthenticatedApprovalsIndexRouteImport } from './routes/_authenticated/approvals/index'
 import { Route as AuthenticatedApprovalsApprovalIdRouteImport } from './routes/_authenticated/approvals/$approvalId'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
+import { Route as AuthenticatedInspectionsIndexRouteImport } from './routes/_authenticated/inspections/index'
+import { Route as AuthenticatedMaintenanceIndexRouteImport } from './routes/_authenticated/maintenance/index'
+import { Route as AuthenticatedMaintenanceAiAgentRouteImport } from './routes/_authenticated/maintenance/ai-agent'
+import { Route as AuthenticatedMaintenanceCatalogRouteImport } from './routes/_authenticated/maintenance/catalog'
+import { Route as AuthenticatedMaintenanceJobsRouteImport } from './routes/_authenticated/maintenance/jobs'
+import { Route as AuthenticatedMaintenanceReportsRouteImport } from './routes/_authenticated/maintenance/reports'
+import { Route as AuthenticatedQuotationsIndexRouteImport } from './routes/_authenticated/quotations/index'
+import { Route as AuthenticatedQuotationsCompareRouteImport } from './routes/_authenticated/quotations/compare'
 
 import { Route as AuthenticatedProviderCoordinationIndexRouteImport } from './routes/_authenticated/provider-coordination/index'
 import { Route as AuthenticatedProviderCoordinationCalendarRouteImport } from './routes/_authenticated/provider-coordination/calendar'
@@ -131,6 +139,53 @@ const AuthenticatedErrorsErrorRoute =
     path: '/errors/$error',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedInspectionsIndexRoute =
+  AuthenticatedInspectionsIndexRouteImport.update({
+    id: '/inspections/',
+    path: '/inspections/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMaintenanceIndexRoute =
+  AuthenticatedMaintenanceIndexRouteImport.update({
+    id: '/maintenance/',
+    path: '/maintenance/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMaintenanceAiAgentRoute =
+  AuthenticatedMaintenanceAiAgentRouteImport.update({
+    id: '/maintenance/ai-agent',
+    path: '/maintenance/ai-agent',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMaintenanceCatalogRoute =
+  AuthenticatedMaintenanceCatalogRouteImport.update({
+    id: '/maintenance/catalog',
+    path: '/maintenance/catalog',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMaintenanceJobsRoute =
+  AuthenticatedMaintenanceJobsRouteImport.update({
+    id: '/maintenance/jobs',
+    path: '/maintenance/jobs',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMaintenanceReportsRoute =
+  AuthenticatedMaintenanceReportsRouteImport.update({
+    id: '/maintenance/reports',
+    path: '/maintenance/reports',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedQuotationsIndexRoute =
+  AuthenticatedQuotationsIndexRouteImport.update({
+    id: '/quotations/',
+    path: '/quotations/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedQuotationsCompareRoute =
+  AuthenticatedQuotationsCompareRouteImport.update({
+    id: '/quotations/compare',
+    path: '/quotations/compare',
+    getParentRoute: () => AuthenticatedRouteRoute,
 
 const AuthenticatedProviderCoordinationIndexRoute =
   AuthenticatedProviderCoordinationIndexRouteImport.update({
@@ -231,12 +286,20 @@ export interface FileRoutesByFullPath {
   '/follow-ups': typeof AuthenticatedFollowUpsRoute
   '/approvals/$approvalId': typeof AuthenticatedApprovalsApprovalIdRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/maintenance/ai-agent': typeof AuthenticatedMaintenanceAiAgentRoute
+  '/maintenance/catalog': typeof AuthenticatedMaintenanceCatalogRoute
+  '/maintenance/jobs': typeof AuthenticatedMaintenanceJobsRoute
+  '/maintenance/reports': typeof AuthenticatedMaintenanceReportsRoute
+  '/quotations/compare': typeof AuthenticatedQuotationsCompareRoute
   '/provider-coordination/calendar': typeof AuthenticatedProviderCoordinationCalendarRoute
   '/provider-coordination/matching': typeof AuthenticatedProviderCoordinationMatchingRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+  '/inspections/': typeof AuthenticatedInspectionsIndexRoute
+  '/maintenance/': typeof AuthenticatedMaintenanceIndexRoute
+  '/quotations/': typeof AuthenticatedQuotationsIndexRoute
   '/approvals/': typeof AuthenticatedApprovalsIndexRoute
 
   '/provider-coordination/': typeof AuthenticatedProviderCoordinationIndexRoute
@@ -265,12 +328,20 @@ export interface FileRoutesByTo {
   '/': typeof AuthenticatedIndexRoute
   '/approvals/$approvalId': typeof AuthenticatedApprovalsApprovalIdRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/maintenance/ai-agent': typeof AuthenticatedMaintenanceAiAgentRoute
+  '/maintenance/catalog': typeof AuthenticatedMaintenanceCatalogRoute
+  '/maintenance/jobs': typeof AuthenticatedMaintenanceJobsRoute
+  '/maintenance/reports': typeof AuthenticatedMaintenanceReportsRoute
+  '/quotations/compare': typeof AuthenticatedQuotationsCompareRoute
   '/provider-coordination/calendar': typeof AuthenticatedProviderCoordinationCalendarRoute
   '/provider-coordination/matching': typeof AuthenticatedProviderCoordinationMatchingRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+  '/inspections': typeof AuthenticatedInspectionsIndexRoute
+  '/maintenance': typeof AuthenticatedMaintenanceIndexRoute
+  '/quotations': typeof AuthenticatedQuotationsIndexRoute
   '/approvals': typeof AuthenticatedApprovalsIndexRoute
 
   '/provider-coordination': typeof AuthenticatedProviderCoordinationIndexRoute
@@ -303,12 +374,20 @@ export interface FileRoutesById {
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/approvals/$approvalId': typeof AuthenticatedApprovalsApprovalIdRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/_authenticated/maintenance/ai-agent': typeof AuthenticatedMaintenanceAiAgentRoute
+  '/_authenticated/maintenance/catalog': typeof AuthenticatedMaintenanceCatalogRoute
+  '/_authenticated/maintenance/jobs': typeof AuthenticatedMaintenanceJobsRoute
+  '/_authenticated/maintenance/reports': typeof AuthenticatedMaintenanceReportsRoute
+  '/_authenticated/quotations/compare': typeof AuthenticatedQuotationsCompareRoute
   '/_authenticated/provider-coordination/calendar': typeof AuthenticatedProviderCoordinationCalendarRoute
   '/_authenticated/provider-coordination/matching': typeof AuthenticatedProviderCoordinationMatchingRoute
   '/_authenticated/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/_authenticated/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+  '/_authenticated/inspections/': typeof AuthenticatedInspectionsIndexRoute
+  '/_authenticated/maintenance/': typeof AuthenticatedMaintenanceIndexRoute
+  '/_authenticated/quotations/': typeof AuthenticatedQuotationsIndexRoute
   '/_authenticated/approvals/': typeof AuthenticatedApprovalsIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/provider-coordination/providers/$providerId': typeof AuthenticatedProviderCoordinationProvidersProviderIdRoute
@@ -335,12 +414,20 @@ export interface FileRouteTypes {
     | '/follow-ups'
     | '/approvals/$approvalId'
     | '/errors/$error'
+    | '/maintenance/ai-agent'
+    | '/maintenance/catalog'
+    | '/maintenance/jobs'
+    | '/maintenance/reports'
+    | '/quotations/compare'
     | '/provider-coordination/calendar'
     | '/provider-coordination/matching'
     | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
     | '/settings/notifications'
+    | '/inspections/'
+    | '/maintenance/'
+    | '/quotations/'
     | '/approvals/'
     | '/settings/'
     | '/provider-coordination/providers/$providerId'
@@ -363,12 +450,20 @@ export interface FileRouteTypes {
     | '/'
     | '/approvals/$approvalId'
     | '/errors/$error'
+    | '/maintenance/ai-agent'
+    | '/maintenance/catalog'
+    | '/maintenance/jobs'
+    | '/maintenance/reports'
+    | '/quotations/compare'
     | '/provider-coordination/calendar'
     | '/provider-coordination/matching'
     | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
     | '/settings/notifications'
+    | '/inspections'
+    | '/maintenance'
+    | '/quotations'
     | '/approvals'
     | '/settings'
     | '/provider-coordination/providers/$providerId'
@@ -394,12 +489,20 @@ export interface FileRouteTypes {
     | '/_authenticated/'
     | '/_authenticated/approvals/$approvalId'
     | '/_authenticated/errors/$error'
+    | '/_authenticated/maintenance/ai-agent'
+    | '/_authenticated/maintenance/catalog'
+    | '/_authenticated/maintenance/jobs'
+    | '/_authenticated/maintenance/reports'
+    | '/_authenticated/quotations/compare'
     | '/_authenticated/provider-coordination/calendar'
     | '/_authenticated/provider-coordination/matching'
     | '/_authenticated/settings/account'
     | '/_authenticated/settings/appearance'
     | '/_authenticated/settings/display'
     | '/_authenticated/settings/notifications'
+    | '/_authenticated/inspections/'
+    | '/_authenticated/maintenance/'
+    | '/_authenticated/quotations/'
     | '/_authenticated/approvals/'
     | '/_authenticated/settings/'
     | '/_authenticated/provider-coordination/providers/$providerId'
@@ -542,6 +645,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedErrorsErrorRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/inspections/': {
+      id: '/_authenticated/inspections/'
+      path: '/inspections'
+      fullPath: '/inspections/'
+      preLoaderRoute: typeof AuthenticatedInspectionsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/maintenance/': {
+      id: '/_authenticated/maintenance/'
+      path: '/maintenance'
+      fullPath: '/maintenance/'
+      preLoaderRoute: typeof AuthenticatedMaintenanceIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/maintenance/ai-agent': {
+      id: '/_authenticated/maintenance/ai-agent'
+      path: '/maintenance/ai-agent'
+      fullPath: '/maintenance/ai-agent'
+      preLoaderRoute: typeof AuthenticatedMaintenanceAiAgentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/maintenance/catalog': {
+      id: '/_authenticated/maintenance/catalog'
+      path: '/maintenance/catalog'
+      fullPath: '/maintenance/catalog'
+      preLoaderRoute: typeof AuthenticatedMaintenanceCatalogRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/maintenance/jobs': {
+      id: '/_authenticated/maintenance/jobs'
+      path: '/maintenance/jobs'
+      fullPath: '/maintenance/jobs'
+      preLoaderRoute: typeof AuthenticatedMaintenanceJobsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/maintenance/reports': {
+      id: '/_authenticated/maintenance/reports'
+      path: '/maintenance/reports'
+      fullPath: '/maintenance/reports'
+      preLoaderRoute: typeof AuthenticatedMaintenanceReportsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/quotations/': {
+      id: '/_authenticated/quotations/'
+      path: '/quotations'
+      fullPath: '/quotations/'
+      preLoaderRoute: typeof AuthenticatedQuotationsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/quotations/compare': {
+      id: '/_authenticated/quotations/compare'
+      path: '/quotations/compare'
+      fullPath: '/quotations/compare'
+      preLoaderRoute: typeof AuthenticatedQuotationsCompareRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
 
     '/_authenticated/provider-coordination/': {
       id: '/_authenticated/provider-coordination/'
@@ -702,6 +860,14 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedApprovalsApprovalIdRoute: typeof AuthenticatedApprovalsApprovalIdRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
+  AuthenticatedMaintenanceAiAgentRoute: typeof AuthenticatedMaintenanceAiAgentRoute
+  AuthenticatedMaintenanceCatalogRoute: typeof AuthenticatedMaintenanceCatalogRoute
+  AuthenticatedMaintenanceJobsRoute: typeof AuthenticatedMaintenanceJobsRoute
+  AuthenticatedMaintenanceReportsRoute: typeof AuthenticatedMaintenanceReportsRoute
+  AuthenticatedQuotationsCompareRoute: typeof AuthenticatedQuotationsCompareRoute
+  AuthenticatedInspectionsIndexRoute: typeof AuthenticatedInspectionsIndexRoute
+  AuthenticatedMaintenanceIndexRoute: typeof AuthenticatedMaintenanceIndexRoute
+  AuthenticatedQuotationsIndexRoute: typeof AuthenticatedQuotationsIndexRoute
   AuthenticatedApprovalsIndexRoute: typeof AuthenticatedApprovalsIndexRoute
 }
 
@@ -714,6 +880,14 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedApprovalsApprovalIdRoute: AuthenticatedApprovalsApprovalIdRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
+  AuthenticatedMaintenanceAiAgentRoute: AuthenticatedMaintenanceAiAgentRoute,
+  AuthenticatedMaintenanceCatalogRoute: AuthenticatedMaintenanceCatalogRoute,
+  AuthenticatedMaintenanceJobsRoute: AuthenticatedMaintenanceJobsRoute,
+  AuthenticatedMaintenanceReportsRoute: AuthenticatedMaintenanceReportsRoute,
+  AuthenticatedQuotationsCompareRoute: AuthenticatedQuotationsCompareRoute,
+  AuthenticatedInspectionsIndexRoute: AuthenticatedInspectionsIndexRoute,
+  AuthenticatedMaintenanceIndexRoute: AuthenticatedMaintenanceIndexRoute,
+  AuthenticatedQuotationsIndexRoute: AuthenticatedQuotationsIndexRoute,
   AuthenticatedApprovalsIndexRoute: AuthenticatedApprovalsIndexRoute,
 }
 

@@ -13,6 +13,14 @@ import {
   UserCog,
   UserX,
   ShieldCheck,
+  Command,
+  GalleryVerticalEnd,
+  FileCheck2,
+  Receipt,
+  Scale,
+  Sparkles,
+  Clock,
+  TrendingUp,
   ClipboardCheck,
   ScrollText,
   ListChecks,
@@ -31,12 +39,22 @@ import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
   user: {
+    name: 'Nimal Perera',
+    email: 'nimal.rep@assetbridge.ai',
     name: 'Facility Admin',
     email: 'admin@assetbridge.ai',
     avatar: '/avatars/shadcn.jpg',
   },
   teams: [
     {
+      name: 'AssetBridge AI',
+      logo: Command,
+      plan: 'Remote Asset Platform',
+    },
+    {
+      name: 'Overseas Owner Portal',
+      logo: GalleryVerticalEnd,
+      plan: 'Enterprise Continuity',
   name: 'AssetBridge AI',
   logo: Boxes,
   plan: 'Enterprise Platform',
@@ -49,6 +67,54 @@ export const sidebarData: SidebarData = {
   ],
   navGroups: [
     {
+      title: 'Member 3: Maintenance & Quotations',
+      items: [
+        {
+          title: 'Maintenance Overview',
+          url: '/maintenance',
+          icon: Wrench,
+        },
+        {
+          title: 'Damage Inspections',
+          url: '/inspections',
+          icon: FileCheck2,
+          badge: 'INS-1021',
+        },
+        {
+          title: 'Quotations',
+          url: '/quotations',
+          icon: Receipt,
+        },
+        {
+          title: 'Compare Quotations (AI)',
+          url: '/quotations/compare',
+          icon: Scale,
+          badge: 'AI Rec',
+        },
+        {
+          title: 'Maintenance Jobs',
+          url: '/maintenance/jobs',
+          icon: Clock,
+        },
+        {
+          title: 'Price Book Catalog',
+          url: '/maintenance/catalog',
+          icon: Package,
+        },
+        {
+          title: 'Reports & Analytics',
+          url: '/maintenance/reports',
+          icon: TrendingUp,
+        },
+        {
+          title: 'Agent 3 & RAG Studio',
+          url: '/maintenance/ai-agent',
+          icon: Sparkles,
+        },
+      ],
+    },
+    {
+      title: 'General',
       title: 'Management',
       items: [
         {
